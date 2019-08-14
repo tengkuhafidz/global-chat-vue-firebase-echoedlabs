@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Global Chat</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+  </head>
+  <body>
+  <section class="section" id="app">
+    <div class="container" id="chatApp">
+      <div class="has-text-centered">
+        <h1 class="title">
+          Global Chat
+        </h1>
+        <p class="subtitle">
+          Because talking to total strangers is a <strong>good</strong> idea!
+        </p>
+      </div>
+
+      <div class="login">
+        <div class="field">
+          <div class="control">
+            <input class="input is-large" type="text" placeholder="Your Name" v-on:keyup.enter="Username" v-model="currentUser" >
+          </div>
+        </div>
+      </div>
+
+      <div class="box" id="chatArea">
+        <div class="notification" v-bind:class="{'is-success': message.author === currentUser}" v-for="message in messages">
+          <p><strong>{{message.author}}</strong> <small>31m</small></p>
+          <p>{{message.text}}</p>
+        </div>
+      </div>
+
+      <div class="field">
+        <div class="control">
+          <input class="input is-large" type="text" placeholder="Write your message..." v-on:keyup.enter="addMessage" v-model="newMessageText" >
+        </div>
+      </div>
+      
+    </div>
+  </section>
+
+  <!-- Firebase -->
+ <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+ <script  src="https://www.gstatic.com/firebasejs/6.3.5/firebase-app.js"></script>
+ <!-- Add Firebase products that you want to use -->
+ <script  src="https://www.gstatic.com/firebasejs/6.3.5/firebase-auth.js"></script>
+ <script  src="https://www.gstatic.com/firebasejs/6.3.5/firebase-firestore.js"></script>
+  <!-- Initialize Firebase -->
+  <script  src="firebase-init.js"></script>
+
+  <!-- Vue JS -->
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <!-- My Custom Js -->
+  <script src="main.js"></script>
+
+
+  </body>
+</html>
